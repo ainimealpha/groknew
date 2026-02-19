@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gallery Codex - A futuristic digital gallery platform for showcasing premium designs and knowledge hubs.">
+    <meta name="keywords" content="gallery, codex, digital portfolio, UI design, futuristic, modern">
+    <meta name="author" content="Gallery Codex">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourusername.github.io/gallery-codex/">
+    <meta property="og:title" content="Gallery Codex">
+    <meta property="og:description" content="Futuristic digital gallery platform.">
+    <meta property="og:image" content="assets/images/og-image.jpg"> <!-- Add a sample OG image in images folder -->
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://yourusername.github.io/gallery-codex/">
+    <meta name="twitter:title" content="Gallery Codex">
+    <meta name="twitter:description" content="Futuristic digital gallery platform.">
+    <meta name="twitter:image" content="assets/images/og-image.jpg">
+    
+    <title>Gallery Codex</title>
+    
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Libraries via CDN -->
+    <!-- Chart.js for dashboard charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Particles.js for background animation -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
+<body class="dark-mode">
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+    
+    <!-- Navbar -->
+    <nav id="navbar" class="sticky">
+        <div class="container">
+            <a href="#" class="logo">Gallery Codex</a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+                <button class="hamburger" aria-label="Toggle menu">☰</button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section (Landing Page) -->
+    <section id="home" class="hero">
+        <div id="particles-js"></div> <!-- Background particles -->
+        <div class="hero-content container">
+            <h1>Welcome to Gallery Codex</h1>
+            <p>A futuristic platform for digital galleries, knowledge hubs, and premium portfolios.</p>
+            <a href="#gallery" class="cta-button">Explore Gallery</a>
+        </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery container">
+        <h2>Gallery</h2>
+        <div class="gallery-controls">
+            <!-- Search -->
+            <input type="text" id="search-input" placeholder="Search..." aria-label="Search gallery items">
+            
+            <!-- Category Filter -->
+            <select id="category-filter" aria-label="Filter by category">
+                <option value="">All Categories</option>
+            </select>
+            
+            <!-- Tag Filter -->
+            <select id="tag-filter" aria-label="Filter by tag">
+                <option value="">All Tags</option>
+            </select>
+            
+            <!-- Sort -->
+            <select id="sort-select" aria-label="Sort options">
+                <option value="title-asc">A-Z</option>
+                <option value="title-desc">Z-A</option>
+                <option value="date-desc">Newest</option>
+                <option value="popularity-desc">Popular</option>
+            </select>
+        </div>
+        <div id="gallery-grid" class="masonry-grid">
+            <!-- Dynamic gallery items here -->
+        </div>
+    </section>
+    
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="dashboard container">
+        <h2>Dashboard</h2>
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Items</h3>
+                <p id="total-items">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Views</h3>
+                <p id="total-views">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Likes</h3>
+                <p id="total-likes">0</p>
+            </div>
+        </div>
+        <canvas id="stats-chart"></canvas>
+    </section>
+    
+    <!-- Modal for Preview -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content glass">
+            <span class="close" aria-label="Close modal">&times;</span>
+            <img id="modal-image" src="" alt="" loading="lazy">
+            <h3 id="modal-title"></h3>
+            <p id="modal-description"></p>
+            <div class="modal-stats">
+                <span>Views: <span id="modal-views"></span></span>
+                <span>Likes: <span id="modal-likes"></span></span>
+            </div>
+            <div class="modal-actions">
+                <button id="like-button">Like</button>
+                <button id="bookmark-button">Bookmark</button>
+                <button id="share-button">Share</button>
+                <button id="copy-link">Copy Link</button>
+            </div>
+            <!-- Comment Section -->
+            <div class="comments">
+                <h4>Comments</h4>
+                <textarea id="comment-input" placeholder="Add a comment..." aria-label="Comment input"></textarea>
+                <button id="add-comment">Post</button>
+                <ul id="comment-list"></ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+    
+    <!-- Floating Action Button (Back to Top) -->
+    <button id="fab" aria-label="Back to top">↑</button>
+    
+    <!-- Scripts -->
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/storage.js"></script>
+    <script src="assets/js/gallery.js"></script>
+    <script src="assets/js/main.js"></script>
+    
+    <!-- Init Particles -->
+    <script>
+        particlesJS.load('particles-js', 'https://particles.js.org/particles.json', function() {
+            console.log('particles.js loaded');
+        });
+    </script>
+</body>
+</html>
